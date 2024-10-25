@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horario 1ro I</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f7; /* Fondo suave */
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #3b5998; /* Color azul del encabezado */
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            font-size: 2.5em;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra debajo del título */
+            letter-spacing: 1.5px; /* Espaciado entre letras */
+        }
+
+        table {
+            width: 90%;
+            margin: 50px auto;
+            border-collapse: collapse;
+            border-radius: 10px; /* Bordes redondeados */
+            overflow: hidden; /* Para aplicar correctamente los bordes */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Sombra alrededor de la tabla */
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            transition: background-color 0.3s ease-in-out; /* Transición suave para hover */
+        }
+
+        th {
+            background-color: #3b5998;
+            color: white;
+            text-transform: uppercase;
+            font-size: 1.1em;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f2f2f2; /* Fondo alternativo */
+        }
+
+        tr:nth-child(odd) td {
+            background-color: #fff; /* Fondo principal */
+        }
+
+        td.recreo {
+            background-color: #ffa07a; /* Color especial para recreo */
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        td {
+            background-color: #dfe3ee; /* Color por defecto de las celdas */
+        }
+
+        .row-recreo td {
+            background-color: #ffcccb; /* Color recreo suave */
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        td.horario {
+            background-color: #add8e6; /* Color especial para el horario */
+            font-weight: bold;
+        }
+
+        td:nth-child(1) {
+            width: 15%; /* Para hacer la columna de horario más ancha */
+        }
+
+        /* Sombra para las celdas */
+        td, th {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Efecto hover */
+        tr:hover td {
+            background-color: #e0e7ff; /* Fondo al pasar el mouse por las filas */
+            cursor: pointer; /* Cambia el cursor para indicar interacción */
+            transform: scale(1.02); /* Un pequeño efecto de zoom */
+        }
+
+        /* Estilo adicional para recreo */
+        tr.row-recreo td {
+            letter-spacing: 1px;
+        }
+
+        /* Bordes redondeados */
+        table, th, td {
+            border-radius: 10px;
+        }
+
+        /* Animación al pasar el mouse */
+        tr:hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra cuando se selecciona la fila */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Horario de Clases - 1ro I</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>HORARIO</th>
+                <th>LUNES</th>
+                <th>MARTES</th>
+                <th>MIÉRCOLES</th>
+                <th>JUEVES</th>
+                <th>VIERNES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="horario">7:30 A 8:10</td>
+                <td>INFORMÁTICA</td>
+                <td>HISTORIA: ENTREGA DE LA EVALUACION 29/10</td>
+                <td>HISTORIA</td>
+                <td>QUÍMICA</td>
+                <td>DIBUJO TEC</td>
+            </tr>
+            <tr>
+                <td class="horario">8:10 A 8:50</td>
+                <td>INFORMÁTICA</td>
+                <td>HISTORIA</td>
+                <td>LENGUA</td>
+                <td>QUÍMICA</td>
+                <td>DIBUJO TEC</td>
+            </tr>
+            <tr class="row-recreo">
+                <td colspan="6">RECREO</td>
+            </tr>
+            <tr>
+                <td class="horario">9:00 A 9:40</td>
+                <td>INFORMÁTICA</td>
+                <td>BIOLOGÍA: ENTREGA DEL TRABAJO "SISTEMAS DE NUTRICIÓN" 29/10</td>
+                <td>BIOLOGÍA</td>
+                <td>INGLÉS</td>
+                <td>DIBUJO TEC</td>
+            </tr>
+            <tr>
+                <td class="horario">9:40 A 10:20</td>
+                <td>TECNOLOGÍA</td>
+                <td>GEOGRAFÍA</td>
+                <td>BIOLOGÍA</td>
+                <td>INGLÉS</td>
+                <td>INGLÉS</td>
+            </tr>
+            <tr class="row-recreo">
+                <td colspan="6">RECREO</td>
+            </tr>
+            <tr>
+                <td class="horario">10:30 A 11:10</td>
+                <td>TECNOLOGÍA</td>
+                <td>GEOGRAFÍA</td>
+                <td>QUÍMICA</td>
+                <td>LENGUA</td>
+                <td>FÍSICA</td>
+            </tr>
+            <tr>
+                <td class="horario">11:10 A 11:50</td>
+                <td>TECNOLOGÍA</td>
+                <td>GEOGRAFÍA</td>
+                <td>FEC</td>
+                <td>LENGUA</td>
+                <td>FÍSICA</td>
+            </tr>
+            <tr class="row-recreo">
+                <td colspan="6">RECREO</td>
+            </tr>
+            <tr>
+                <td class="horario">12:00 A 12:40</td>
+                <td>MATEMÁTICAS</td>
+                <td>LENGUA: TRAER UNA REVISTA NUEVA 29/10</td>
+                <td>FEC</td>
+                <td>TECNOLOGÍA</td>
+                <td>MATEMÁTICAS</td>
+            </tr>
+            <tr>
+                <td class="horario">12:40 A 13:20</td>
+                <td>MATEMÁTICAS: TRAER UNA ACTIVIDAD RECREATIVA CON MANUALIDADES 28/10</td>
+                <td>LENGUA</td>
+                <td>FÍSICA</td>
+                <td>FEC</td>
+                <td>MATEMÁTICAS</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
