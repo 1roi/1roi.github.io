@@ -128,11 +128,7 @@
 
         /* Estilo para los mensajes de no clases */
         .no-clases {
-            background-color: #FFCCCB; /* Color suave para resaltar */
-            padding: 10px;
-            text-align: center;
-            margin-bottom: 20px;
-            border-radius: 5px;
+            color: red; /* Color para el texto de "sin clases" */
             font-weight: bold;
         }
     </style>
@@ -152,16 +148,14 @@
     <main>
         <div id="horario" class="cuadro active">
             <h2>Horario</h2>
-            <div class="no-clases">Miércoles sin clases 24/10</div>
-            <div class="no-clases">Jueves sin clases 25/10</div>
             <table>
                 <tr>
                     <th>Horario</th>
                     <th>Lunes</th>
                     <th>Martes</th>
                     <th>Miércoles</th>
-                    <th>Jueves</th>
-                    <th>Viernes</th>
+                    <th>Jueves <div class="no-clases">sin clases 25/10</div></th>
+                    <th>Viernes <div class="no-clases">sin clases 24/10</div></th>
                 </tr>
                 <tr>
                     <td>7:30 a 8:10</td>
