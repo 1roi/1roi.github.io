@@ -3,203 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horario 1ro I</title>
+    <title>Horarios y Trabajos Prácticos</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f4f7; /* Fondo suave */
-            color: #333;
+        /* Estilos generales */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        h1 {
-            background-color: #3b5998; /* Color azul del encabezado */
-            color: #fff;
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #EDEDE9;
+            color: #333;
+        }
+
+        /* Encabezado y menú */
+        header {
+            background-color: #D6CCC2;
+            padding: 10px;
+            position: relative;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        nav {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            background-color: #D6CCC2;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10; /* Asegura que el menú esté encima del contenido */
+        }
+
+        nav.open {
+            display: block;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #E3D5CA;
+            cursor: pointer;
             text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s; /* Añadir animación */
+        }
+
+        nav ul li:hover {
+            background-color: #D5BDAF;
+            transform: scale(1.05); /* Efecto de aumentar al pasar el mouse */
+        }
+
+        /* Estilos para los cuadros */
+        .cuadro {
+            background-color: #F5EBE0;
             padding: 20px;
-            margin: 0;
-            font-size: 2.5em;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra debajo del título */
-            letter-spacing: 1.5px; /* Espaciado entre letras */
-        }
-
-        table {
-            width: 90%;
-            margin: 50px auto;
-            border-collapse: collapse;
-            border-radius: 10px; /* Bordes redondeados */
-            overflow: hidden; /* Para aplicar correctamente los bordes */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Sombra alrededor de la tabla */
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 15px;
-            text-align: center;
-            transition: background-color 0.3s ease-in-out; /* Transición suave para hover */
-        }
-
-        th {
-            background-color: #3b5998;
-            color: white;
-            text-transform: uppercase;
-            font-size: 1.1em;
-        }
-
-        tr:nth-child(even) td {
-            background-color: #f2f2f2; /* Fondo alternativo */
-        }
-
-        tr:nth-child(odd) td {
-            background-color: #fff; /* Fondo principal */
-        }
-
-        td.recreo {
-            background-color: #ffa07a; /* Color especial para recreo */
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-
-        td {
-            background-color: #dfe3ee; /* Color por defecto de las celdas */
-        }
-
-        .row-recreo td {
-            background-color: #ffcccb; /* Color recreo suave */
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        td.horario {
-            background-color: #add8e6; /* Color especial para el horario */
-            font-weight: bold;
-        }
-
-        td:nth-child(1) {
-            width: 15%; /* Para hacer la columna de horario más ancha */
-        }
-
-        /* Sombra para las celdas */
-        td, th {
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Efecto hover */
-        tr:hover td {
-            background-color: #e0e7ff; /* Fondo al pasar el mouse por las filas */
-            cursor: pointer; /* Cambia el cursor para indicar interacción */
-            transform: scale(1.02); /* Un pequeño efecto de zoom */
-        }
-
-        /* Estilo adicional para recreo */
-        tr.row-recreo td {
-            letter-spacing: 1px;
-        }
-
-        /* Bordes redondeados */
-        table, th, td {
+            margin: 20px;
             border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            opacity: 0; /* Iniciar con opacidad 0 */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Transición suave */
+            transform: translateY(20px); /* Desplazar hacia abajo */
+            z-index: 1; /* Asegura que el cuadro esté detrás del menú */
         }
 
-        /* Animación al pasar el mouse */
-        tr:hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra cuando se selecciona la fila */
+        .active {
+            display: block;
+            opacity: 1; /* Hacer visible */
+            transform: translateY(0); /* Regresar a la posición original */
+        }
+
+        .sub-cuadro {
+            background-color: #D5BDAF;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para la tabla del horario */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #D5BDAF;
+        }
+
+        table td:nth-child(odd) {
+            background-color: #F5EBE0;
+        }
+
+        table td:nth-child(even) {
+            background-color: #E3D5CA;
+        }
+
+        h2 {
+            font-family: 'Georgia', serif;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
+    <header>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <nav id="menu">
+            <ul>
+                <li onclick="showSection('horario')">Inicio</li>
+                <li onclick="showSection('trabajos-pendientes')">Trabajos Prácticos Pendientes</li>
+                <li onclick="showSection('recordatorios')">Recordatorios</li>
+            </ul>
+        </nav>
+    </header>
 
-    <h1>Horario de Clases - 1ro I</h1>
+    <main>
+        <div id="horario" class="cuadro active">
+            <h2>Horario</h2>
+            <table>
+                <tr>
+                    <th>Horario</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miércoles</th>
+                    <th>Jueves 24/10</th>
+                    <th>Viernes 25/10</th>
+                </tr>
+                <tr>
+                    <td>7:30 a 8:10</td>
+                    <td>Informática</td>
+                    <td>Historia</td>
+                    <td>Historia</td>
+                    <td rowspan="8" colspan="1">Sin clases</td>
+                    <td rowspan="8" colspan="1">Sin clases</td>
+                </tr>
+                <tr>
+                    <td>8:10 a 8:50</td>
+                    <td>Informática</td>
+                    <td>Historia</td>
+                    <td>Lengua</td>
+                </tr>
+                <tr>
+                    <td>9:00 a 9:40</td>
+                    <td>Informática</td>
+                    <td>Biología</td>
+                    <td>Biología</td>
+                </tr>
+                <tr>
+                    <td>9:40 a 10:20</td>
+                    <td>Tecnología</td>
+                    <td>Geografía</td>
+                    <td>Biología</td>
+                </tr>
+                <tr>
+                    <td>10:30 a 11:10</td>
+                    <td>Tecnología</td>
+                    <td>Geografía</td>
+                    <td>Química</td>
+                </tr>
+                <tr>
+                    <td>11:10 a 11:50</td>
+                    <td>Matemáticas</td>
+                    <td>Geografía</td>
+                    <td>FEC</td>
+                </tr>
+                <tr>
+                    <td>12:00 a 12:40</td>
+                    <td>Matemáticas</td>
+                    <td>Lengua</td>
+                    <td>FEC</td>
+                </tr>
+                <tr>
+                    <td>12:40 a 13:20</td>
+                    <td>Matemáticas</td>
+                    <td>Lengua</td>
+                    <td>Física</td>
+                </tr>
+            </table>
+        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>HORARIO</th>
-                <th>LUNES</th>
-                <th>MARTES</th>
-                <th>MIÉRCOLES</th>
-                <th>JUEVES</th>
-                <th>VIERNES</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="horario">7:30 A 8:10</td>
-                <td>INFORMÁTICA</td>
-                <td>HISTORIA: ENTREGA DE LA EVALUACION 29/10</td>
-                <td>HISTORIA</td>
-                <td>QUÍMICA</td>
-                <td>DIBUJO TEC</td>
-            </tr>
-            <tr>
-                <td class="horario">8:10 A 8:50</td>
-                <td>INFORMÁTICA</td>
-                <td>HISTORIA</td>
-                <td>LENGUA</td>
-                <td>QUÍMICA</td>
-                <td>DIBUJO TEC</td>
-            </tr>
-            <tr class="row-recreo">
-                <td colspan="6">RECREO</td>
-            </tr>
-            <tr>
-                <td class="horario">9:00 A 9:40</td>
-                <td>INFORMÁTICA</td>
-                <td>BIOLOGÍA: ENTREGA DEL TRABAJO "SISTEMAS DE NUTRICIÓN" 29/10</td>
-                <td>BIOLOGÍA</td>
-                <td>INGLÉS</td>
-                <td>DIBUJO TEC</td>
-            </tr>
-            <tr>
-                <td class="horario">9:40 A 10:20</td>
-                <td>TECNOLOGÍA</td>
-                <td>GEOGRAFÍA</td>
-                <td>BIOLOGÍA</td>
-                <td>INGLÉS</td>
-                <td>INGLÉS</td>
-            </tr>
-            <tr class="row-recreo">
-                <td colspan="6">RECREO</td>
-            </tr>
-            <tr>
-                <td class="horario">10:30 A 11:10</td>
-                <td>TECNOLOGÍA</td>
-                <td>GEOGRAFÍA</td>
-                <td>QUÍMICA</td>
-                <td>LENGUA</td>
-                <td>FÍSICA</td>
-            </tr>
-            <tr>
-                <td class="horario">11:10 A 11:50</td>
-                <td>TECNOLOGÍA</td>
-                <td>GEOGRAFÍA</td>
-                <td>FEC</td>
-                <td>LENGUA</td>
-                <td>FÍSICA</td>
-            </tr>
-            <tr class="row-recreo">
-                <td colspan="6">RECREO</td>
-            </tr>
-            <tr>
-                <td class="horario">12:00 A 12:40</td>
-                <td>MATEMÁTICAS</td>
-                <td>LENGUA: TRAER UNA REVISTA NUEVA 29/10</td>
-                <td>FEC</td>
-                <td>TECNOLOGÍA</td>
-                <td>MATEMÁTICAS</td>
-            </tr>
-            <tr>
-                <td class="horario">12:40 A 13:20</td>
-                <td>MATEMÁTICAS: TRAER UNA ACTIVIDAD RECREATIVA CON MANUALIDADES 28/10</td>
-                <td>LENGUA</td>
-                <td>FÍSICA</td>
-                <td>FEC</td>
-                <td>MATEMÁTICAS</td>
-            </tr>
-        </tbody>
-    </table>
+        <div id="trabajos-pendientes" class="cuadro">
+            <h2>Trabajos Prácticos Pendientes</h2>
+            <div class="sub-cuadro">Evaluaciones Pendientes</div>
+            <div class="sub-cuadro">Entregar el trabajo de Biología: Sistema Nutricional</div>
+        </div>
 
+        <div id="recordatorios" class="cuadro">
+            <h2>Recordatorios</h2>
+            <div class="sub-cuadro">Traer una revista en Lengua</div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("open");
+        }
+
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            var secciones = document.querySelectorAll('.cuadro');
+            secciones.forEach(function (seccion) {
+                seccion.classList.remove('active');
+            });
+
+            // Mostrar la sección seleccionada
+            var section = document.getElementById(sectionId);
+            section.classList.add('active');
+
+            // Cerrar el menú después de seleccionar una opción
+            var menu = document.getElementById("menu");
+            menu.classList.remove("open");
+        }
+    </script>
 </body>
 </html>
