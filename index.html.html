@@ -143,41 +143,36 @@
             font-weight: bold;
         }
 
-        /* Estilos para el pie de página */
-        footer {
-            margin-top: 20px;
+        /* Estilos para el Classroom y Rotaciones */
+        .classroom, .rotaciones {
             text-align: center;
-        }
-
-        .division {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        .big-text {
-            font-size: 24px;
+            margin-top: 20px;
+            cursor: pointer;
+            color: #4B3D31;
             font-weight: bold;
-            margin: 0 20px;
         }
 
-        .hover-effect:hover {
-            transform: scale(1.1);
-            transition: transform 0.3s;
+        .divider {
+            width: 2px;
+            height: 50px;
+            background-color: #4B3D31; /* Color de la línea, concordante con la paleta */
+            display: inline-block;
+            margin: 0 15px;
         }
 
-        .line {
-            height: 2px; /* Grosor de la línea */
-            width: 30px; /* Largo de la línea */
-            background-color: #D5BDAF; /* Color de la línea */
-            margin: 0 10px;
+        /* Cuadro modal */
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #F5EBE0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 100;
         }
-
-        .no-hover {
-            font-size: 32px; /* Tamaño mayor para destacar */
-        }
-
     </style>
 </head>
 <body>
@@ -193,7 +188,13 @@
         </nav>
     </header>
 
-    <h1 class="encabezado">1ro I</h1>
+    <h1 class="encabezado">
+        <span class="rotaciones" onclick="toggleRotaciones()">Rotaciones</span>
+        <div class="divider"></div>
+        1ro I
+        <div class="divider"></div>
+        <span class="classroom" onclick="toggleClassroom()">Classroom</span>
+    </h1>
 
     <main>
         <div id="horario" class="cuadro active">
@@ -276,48 +277,78 @@
 
         <div id="trabajos-pendientes" class="cuadro">
             <h2>Trabajos Prácticos Pendientes</h2>
-            <div class="sub-cuadro">Evaluaciones Pendientes</div>
-            <div class="sub-cuadro">Entregar el trabajo de Biología para el viernes 26/10.</div>
-            <div class="sub-cuadro">Entregar el trabajo de Historia para el lunes 30/10.</div>
-            <div class="sub-cuadro">Entregar el trabajo de Química para el viernes 02/11.</div>
+            <div class="sub-cuadro">
+                <p>Evaluaciones Pendientes</p>
+                <p>Entregar el trabajo de Biología: Sistema Nutricional - Martes 29/10</p>
+                <p>Entregar trabajo recreativo con manualidades de Matemática - Lunes 28/10</p>
+            </div>
         </div>
 
         <div id="recordatorios" class="cuadro">
             <h2>Recordatorios</h2>
-            <div class="sub-cuadro">Traer una revista en lengua.</div>
+            <div class="sub-cuadro">
+                <p>Traer una revista en Lengua - Martes 29/10</p>
+            </div>
         </div>
 
         <div id="devolucion-evaluaciones" class="cuadro">
             <h2>Devolución de Evaluaciones</h2>
-            <div class="sub-cuadro">Recoger las evaluaciones de Matemáticas el viernes 27/10.</div>
+            <div class="sub-cuadro">
+                <p>Devolución de la evaluación de Historia - Martes 29/10</p>
+
+            </div>
         </div>
 
-        <div class="division">
-            <span class="hover-effect">Rotaciones</span>
-            <div class="line"></div>
-            <span class="no-hover big-text">1ro I</span>
-            <div class="line"></div>
-            <span class="hover-effect">Classrooms</span>
+        <div id="classroom" class="cuadro">
+            <h2>Classroom</h2>
+            <div class="sub-cuadro">
+                <p>Biología: <strong>w4wpr55</strong></p>
+                <p>Física: <strong>pna4vyo</strong></p>
+                <p>Informática: <strong>6cs3pb4</strong></p>
+            </div>
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Mi Aula Virtual</p>
-    </footer>
+    <div id="modalRotaciones" class="modal">
+        <h2>Rotaciones</h2>
+        <p>La 4ta rotación inició el 9/9 y termina el 28/10.</p>
+        <button onclick="closeModal('modalRotaciones')">Cerrar</button>
+    </div>
+
+    <div id="modalClassroom" class="modal">
+        <h2>Classroom</h2>
+        <p>Clase de Biología: w4wpr55</p>
+        <p>Clase de Física: pna4vyo</p>
+        <p>Clase de Informática: 6cs3pb4</p>
+        <button onclick="closeModal('modalClassroom')">Cerrar</button>
+    </div>
 
     <script>
         function toggleMenu() {
-            var menu = document.getElementById("menu");
-            menu.classList.toggle("open");
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('open');
         }
 
-        function showSection(section) {
-            var sections = document.querySelectorAll('.cuadro');
-            sections.forEach(function (sec) {
-                sec.classList.remove('active');
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.cuadro');
+            sections.forEach(section => {
+                section.classList.remove('active');
             });
-            document.getElementById(section).classList.add('active');
-            toggleMenu(); // Cierra el menú después de seleccionar
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function toggleRotaciones() {
+            const modal = document.getElementById('modalRotaciones');
+            modal.style.display = modal.style.display === "block" ? "none" : "block";
+        }
+
+        function toggleClassroom() {
+            const modal = document.getElementById('modalClassroom');
+            modal.style.display = modal.style.display === "block" ? "none" : "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
         }
     </script>
 </body>
