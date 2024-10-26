@@ -143,72 +143,41 @@
             font-weight: bold;
         }
 
-        /* Estilos para la división rotaciones y classrooms */
+        /* Estilos para el pie de página */
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+
         .division {
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             margin: 20px 0;
         }
 
-        .line {
-            height: 2px; /* Altura de la línea */
-            width: 50px; /* Ancho de la línea */
-            background-color: #D5BDAF; /* Color de la línea */
-            margin: 0 10px; /* Espaciado lateral */
-        }
-
         .big-text {
-            font-size: 24px; /* Tamaño de fuente de 1ro I */
-            font-weight: bold; /* Peso de fuente */
-            text-align: center; /* Centrado */
-        }
-
-        .hover-effect {
-            cursor: pointer;
-            transition: transform 0.3s;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 20px;
         }
 
         .hover-effect:hover {
-            transform: scale(1.05); /* Efecto al pasar el ratón */
+            transform: scale(1.1);
+            transition: transform 0.3s;
         }
 
-        /* Estilos para el modal */
-        .modal {
-            display: none; /* Oculto por defecto */
-            position: fixed;
-            z-index: 10;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto; /* Habilita el desplazamiento si es necesario */
-            background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
-            justify-content: center; /* Centrado */
-            align-items: center; /* Centrado */
+        .line {
+            height: 2px; /* Grosor de la línea */
+            width: 30px; /* Largo de la línea */
+            background-color: #D5BDAF; /* Color de la línea */
+            margin: 0 10px;
         }
 
-        .modal-content {
-            background-color: #fff; /* Fondo blanco */
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 0.5s; /* Animación de entrada */
+        .no-hover {
+            font-size: 32px; /* Tamaño mayor para destacar */
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #D6CCC2;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
     </style>
 </head>
 <body>
@@ -280,96 +249,75 @@
                 </tr>
                 <tr>
                     <td>11:10 a 11:50</td>
+                    <td>Matemáticas</td>
+                    <td>Geografía</td>
+                    <td>FEC</td>
                     <td>Lengua</td>
-                    <td>Física</td>
-                    <td>Física</td>
-                    <td>Química</td>
                     <td>Física</td>
                 </tr>
                 <tr>
-                    <td>11:50 a 12:30</td>
+                    <td>12:00 a 12:40</td>
+                    <td>Matemáticas</td>
                     <td>Lengua</td>
-                    <td>Matemáticas</td>
-                    <td>Física</td>
-                    <td>Matemáticas</td>
+                    <td>FEC</td>
+                    <td>Tecnología</td>
                     <td>Matemáticas</td>
                 </tr>
                 <tr>
-                    <td>12:30 a 13:10</td>
+                    <td>12:40 a 13:20</td>
                     <td>Matemáticas</td>
-                    <td>Matemáticas</td>
-                    <td>Matemáticas</td>
-                    <td>Matemáticas</td>
+                    <td>Lengua</td>
+                    <td>Física</td>
+                    <td>FEC</td>
                     <td>Matemáticas</td>
                 </tr>
             </table>
         </div>
 
+        <div id="trabajos-pendientes" class="cuadro">
+            <h2>Trabajos Prácticos Pendientes</h2>
+            <div class="sub-cuadro">Evaluaciones Pendientes</div>
+            <div class="sub-cuadro">Entregar el trabajo de Biología para el viernes 26/10.</div>
+            <div class="sub-cuadro">Entregar el trabajo de Historia para el lunes 30/10.</div>
+            <div class="sub-cuadro">Entregar el trabajo de Química para el viernes 02/11.</div>
+        </div>
+
+        <div id="recordatorios" class="cuadro">
+            <h2>Recordatorios</h2>
+            <div class="sub-cuadro">Traer una revista en lengua.</div>
+        </div>
+
+        <div id="devolucion-evaluaciones" class="cuadro">
+            <h2>Devolución de Evaluaciones</h2>
+            <div class="sub-cuadro">Recoger las evaluaciones de Matemáticas el viernes 27/10.</div>
+        </div>
+
         <div class="division">
-            <div class="hover-effect" onclick="showModal('modalClassrooms')">Classrooms</div>
+            <span class="hover-effect">Rotaciones</span>
             <div class="line"></div>
-            <div class="big-text">1ro I</div>
+            <span class="no-hover big-text">1ro I</span>
             <div class="line"></div>
-            <div class="hover-effect" onclick="showModal('modalRotaciones')">Rotaciones</div>
-        </div>
-
-        <!-- Modal para Classrooms -->
-        <div id="modalClassrooms" class="modal">
-            <div class="modal-content">
-                <h2>Códigos:</h2>
-                <p>Biología: w4wpr55</p>
-                <p>Física:</p>
-                <p>Informática: 6cs3pb4</p>
-                <button onclick="closeModal('modalClassrooms')">Cerrar</button>
-            </div>
-        </div>
-
-        <!-- Modal para Rotaciones -->
-        <div id="modalRotaciones" class="modal">
-            <div class="modal-content">
-                <h2>4ta Rotación</h2>
-                <p>Comenzó el 9/9 y finaliza el 28/10</p>
-                <button onclick="closeModal('modalRotaciones')">Cerrar</button>
-            </div>
+            <span class="hover-effect">Classrooms</span>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 Mi Aula</p>
+        <p>&copy; 2024 Mi Aula Virtual</p>
     </footer>
 
     <script>
         function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('open');
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("open");
         }
 
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.cuadro');
-            sections.forEach(section => {
-                section.classList.remove('active');
+        function showSection(section) {
+            var sections = document.querySelectorAll('.cuadro');
+            sections.forEach(function (sec) {
+                sec.classList.remove('active');
             });
-            document.getElementById(sectionId).classList.add('active');
-        }
-
-        function showModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.style.display = 'flex';
-        }
-
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.style.display = 'none';
-        }
-
-        // Cerrar modal al hacer clic fuera del contenido
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            });
+            document.getElementById(section).classList.add('active');
+            toggleMenu(); // Cierra el menú después de seleccionar
         }
     </script>
 </body>
